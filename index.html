@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+
+    <style>
+        input { display: block; }
+        span { display: inline-block; }
+
+        .n-resize { cursor: n-resize }
+        .w-resize { cursor: w-resize }
+
+        .n-resize,
+        .w-resize {
+            -webkit-user-select: none;
+             -khtml-user-select: none;
+               -moz-user-select: none;
+                -ms-user-select: none;
+                 -o-user-select: none;
+                    user-select: none;
+        }
+    </style>
+
+    <title>DragValue.js | Change values by dragging it</title>
+</head>
+<body>
+    <input type="number" min="10">
+    <input type="number" max="0">
+    <input type="number" step="0.1">
+    <span class="number" data-ratio="10" data-axis="y">100</span>
+
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="dragvalue.js"></script>
+    <script>
+        $('input').dragvalue();
+        new DragValue(document.querySelector('.number'));
+    </script>
+</body>
+</html>

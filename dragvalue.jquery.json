@@ -1,0 +1,26 @@
+{
+    "name": "dragvalue",
+    "title": "DragValue.js",
+    "description": "Change values by dragging it",
+    "keywords": [
+        "ui",
+        "input",
+        "forms",
+        "drag",
+        "value"
+    ],
+    "version": "0.0.1",
+    "author": {
+        "name": "Yannick Albert",
+        "email": "mail@yckart.com",
+        "url": "https://github.com/yckart"
+    },
+    "licenses": [{
+        "type": "MIT",
+        "url": "http://yckart.com/mit/"
+    }],
+    "homepage": "http://yckart.github.io/DragValue.js",
+    "demo": "http://yckart.github.io/DragValue.js",
+    "docs": "https://github.com/yckart/DragValue.js",
+    "bugs": "https://github.com/yckart/DragValue.js/issues"
+}
