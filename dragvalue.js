@@ -1,5 +1,5 @@
 /*!
- * dragvalue.js 0.0.2 - https://github.com/yckart/DragValue.js
+ * dragvalue.js 0.0.3 - https://github.com/yckart/DragValue.js
  * Change values by dragging it
  *
  * Copyright (c) 2013 Yannick Albert (http://yckart.com)
