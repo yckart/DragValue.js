@@ -17,9 +17,13 @@
         axis: 'x'
     };
 
+
+
     var on = function (elem, event, fn) {
         return elem.addEventListener ? elem.addEventListener(event, fn, false) : elem.attachEvent('on' + event, fn);
     };
+
+
 
     this.DragValue = function (elem, options) {
         this.elem = elem;
@@ -31,17 +35,19 @@
         this.init();
     };
 
+
+
     DragValue.prototype.init = function () {
         var elem = this.elem;
-        this.getset = elem.value !== undefined ? 'value' : 'innerHTML';
+        this.value = elem.value !== undefined ? 'value' : 'innerHTML';
 
+        this.axis = elem.getAttribute('data-axis') || this.options.axis;
         this.ratio = elem.getAttribute('data-ratio') || this.options.ratio;
         this.step = elem.getAttribute('step') || elem.getAttribute('data-step') || this.options.step;
         this.min = elem.getAttribute('min') || elem.getAttribute('data-min') || this.options.min;
         this.max = elem.getAttribute('max') || elem.getAttribute('data-max') || this.options.max;
         this.min = (this.min - this.min) + this.min;
         this.max = (this.max - this.max) + this.max;
-        this.axis = elem.getAttribute('data-axis') || this.options.axis;
 
         this.horizontal = this.axis === 'x';
 
@@ -51,30 +57,44 @@
     };
 
 
+
     DragValue.prototype.handleEvents = function () {
         var self = this;
         var dragging, last, val;
 
-        on(self.elem, 'mousedown', function (e) {
+        var ondown = function (e) {
             dragging = true;
+            if ( e.touches ) e = e.touches[0];
             last = self.horizontal ? e.clientX : -e.clientY;
-            val = (self.elem[self.getset] || self.min || self.max || 0) - 0;
-        });
+            val = (self.elem[self.value] || self.min || self.max || 0) - 0;
+        };
 
-        on(document, 'mouseup', function () {
+        var onup = function () {
             dragging = false;
-        });
+        };
 
-        on(document, 'mousemove', function (e) {
-            if (!dragging) return;
+        var onmove = function (e) {
+            if ( !dragging || (e.touches && e.touches.length > 1) ) return;
+            if ( e.touches ) e = e.touches[0];
+
             var now = self.horizontal ? e.clientX : -e.clientY;
             var tmp = val + Math.floor((now - last) / self.ratio) * self.step;
             tmp = tmp < self.min ? self.min : tmp;
             tmp = tmp > self.max ? self.max : tmp;
 
-            self.elem[self.getset] = (tmp - 0).toFixed(self.step.length - 2);
-        });
+            self.elem[self.value] = (tmp - 0).toFixed(self.step.length - 2);
+        };
+
+
+        on(self.elem, 'mousedown', ondown);
+        on(document, 'mouseup', onup);
+        on(document, 'mousemove', onmove);
+
+        on(self.elem, 'touchstart', ondown);
+        on(document, 'touchend', onup);
+        on(document, 'touchmove', onmove);
     };
+
 
 
     if ($) $.fn.dragvalue = function (options) {
