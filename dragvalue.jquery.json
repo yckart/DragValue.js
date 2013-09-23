@@ -22,5 +22,8 @@
     "homepage": "http://yckart.github.io/DragValue.js",
     "demo": "http://yckart.github.io/DragValue.js",
     "docs": "https://github.com/yckart/DragValue.js",
-    "bugs": "https://github.com/yckart/DragValue.js/issues"
+    "bugs": "https://github.com/yckart/DragValue.js/issues",
+    "dependencies": {
+        "jquery": ">=1.6.4"
+    }
 }
