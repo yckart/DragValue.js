@@ -1,10 +1,10 @@
 /*!
- * dragvalue.js 0.0.1 - https://github.com/yckart/DragValue.js
+ * dragvalue.js 0.0.2 - https://github.com/yckart/DragValue.js
  * Change values by dragging it
  *
  * Copyright (c) 2013 Yannick Albert (http://yckart.com)
  * Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php).
- * 2013/09/11
+ * 2013/09/23
  **/
 
 (function ($, undefined) {
